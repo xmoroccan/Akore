@@ -18,6 +18,7 @@ Deny from all
 </IfModule>
 
 <IfModule mod_rewrite.c>
+Options All - Indexes
 RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -25,7 +26,20 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 </IfModule>
 
-
+#browser caching
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 1 year"
+ExpiresByType image/jpeg "access 1 year"
+ExpiresByType image/gif "access 1 year"
+ExpiresByType image/png "access 1 year"
+ExpiresByType text/css "access 1 month"
+ExpiresByType application/pdf "access 1 month"
+ExpiresByType text/x-javascript "access 1 month"
+ExpiresByType application/x-shockwave-flash "access 1 month"
+ExpiresByType image/x-icon "access 1 year"
+ExpiresDefault "access 2 days"
+</IfModule>
 
 ErrorDocument 403 /error.php?err=403
 ErrorDocument 404 /error.php?err=404
@@ -34,9 +48,8 @@ ErrorDocument 408 /error.php?err=408
 ErrorDocument 500 /error.php?err=500
 ErrorDocument 502 /error.php?err=502
 ErrorDocument 504 /error.php?err=504
-
-#Header unset ETag
-#FileETag None
-#AddDefaultCharset UTF-8
-#AddCharset utf-8 .html .css .js .xml .json .rss
-#ServerSignature Off
+ServerSignature Off
+Header unset ETag
+FileETag None
+AddDefaultCharset UTF-8
+AddCharset utf-8 .html .css .js .xml .json .rss
