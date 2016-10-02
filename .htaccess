@@ -1,0 +1,42 @@
+<Files "*.ini|*.inc|*.*.php|.*">
+Order Allow,Deny
+Deny from all
+</Files>
+
+<IfModule mod_setenvif.c>
+  SetEnvIfNoCase User-Agent ^$ keep_out
+  SetEnvIfNoCase User-Agent (wget|sqlmap|python|libwww-perl) keep_out
+  SetEnvIfNoCase User-Agent (nikto|scan) keep_out
+  SetEnvIfNoCase User-Agent (pycurl|casper|cmsworldmap|diavol|dotbot) keep_out
+  SetEnvIfNoCase User-Agent (flicky|jakarta|kmccrew) keep_out
+  SetEnvIfNoCase User-Agent (purebot|comodo|feedfinder|planetwork) keep_out
+  <Limit GET POST PUT DELETE HEAD>
+    Order Allow,Deny
+    Allow from all
+    Deny from env=keep_out
+  </Limit>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+</IfModule>
+
+
+
+ErrorDocument 403 /error.php?err=403
+ErrorDocument 404 /error.php?err=404
+ErrorDocument 405 /error.php?err=405
+ErrorDocument 408 /error.php?err=408
+ErrorDocument 500 /error.php?err=500
+ErrorDocument 502 /error.php?err=502
+ErrorDocument 504 /error.php?err=504
+
+#Header unset ETag
+#FileETag None
+#AddDefaultCharset UTF-8
+#AddCharset utf-8 .html .css .js .xml .json .rss
+#ServerSignature Off
