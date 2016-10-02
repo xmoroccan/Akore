@@ -1,12 +1,4 @@
 <?php
-/**
- * Akore PHP Framework
- * @package   Akore
- * @author    Mohamed Elbahja <Mohamed@elbahja.me>
- * @copyright 2016 Akore
- * @version   1.0
- * @link      http://www.elbahja.me
- */
 
 namespace Akore\Helpers; 
 

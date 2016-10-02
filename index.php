@@ -7,6 +7,7 @@
  * @copyright 2016 Dinital Production 
  * @version   1.1
  * @link http://www.dinital.com
+ * @license http://opensource.org/licenses/MIT  MIT License
  */
 
 /**

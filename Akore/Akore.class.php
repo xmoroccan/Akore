@@ -6,6 +6,7 @@
  * @copyright 2016 Dinital Production 
  * @version   1.1
  * @link http://www.dinital.com
+ * @license http://opensource.org/licenses/MIT  MIT License
  */
 
 namespace Akore;
@@ -18,8 +19,6 @@ final class Akore
 	private $uri, $requestURI, $requestKey, $path1, $path2, $isIndex;
 
 	private $uriArray = array();
-
-   private $routes = array();
 
 	private $routeType = 1;
 
